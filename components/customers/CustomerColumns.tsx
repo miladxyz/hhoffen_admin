@@ -5,14 +5,14 @@ import { ColumnDef } from "@tanstack/react-table";
 export const columns: ColumnDef<CustomerType>[] = [
   {
     accessorKey: "clerkId",
-    header: "Clerk ID",
+    header: "آی‌دی",
   },
   {
     accessorKey: "name",
-    header: "Name",
+    header: "نام",
   },
   {
     accessorKey: "email",
-    header: "Email",
+    header: "ایمیل",
   },
 ];

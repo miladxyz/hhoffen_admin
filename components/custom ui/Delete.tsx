@@ -36,11 +36,11 @@ const Delete: React.FC<DeleteProps> = ({ item, id }) => {
       if (res.ok) {
         setLoading(false)
         window.location.href = (`/${itemType}`)
-        toast.success(`${item} deleted`)
+        toast.success(`${item} حذف شد`)
       }
     } catch (err) {
       console.log(err)
-      toast.error("Something went wrong! Please try again.")
+      toast.error("دوباره تلاش کنید")
     }
   }
   return (
@@ -52,14 +52,14 @@ const Delete: React.FC<DeleteProps> = ({ item, id }) => {
       </AlertDialogTrigger>
       <AlertDialogContent className="bg-white text-grey-1">
         <AlertDialogHeader>
-          <AlertDialogTitle className="text-red-1">Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle className="text-red-1">آیا اطمینان دارید؟</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your {item}.
+           از جذف کالکشن اطمینان دارم
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction className="bg-red-1 text-white" onClick={onDelete}>Delete</AlertDialogAction>
+          <AlertDialogCancel>انصراف</AlertDialogCancel>
+          <AlertDialogAction className="bg-red-1 text-white" onClick={onDelete}>حذف</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

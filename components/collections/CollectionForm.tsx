@@ -66,13 +66,13 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
       });
       if (res.ok) {
         setLoading(false);
-        toast.success(`Collection ${initialData ? "updated" : "created"}`);
+        toast.success(`Collection ${initialData ? "آپدیت شد" : "ساخته شد"}`);
         window.location.href = "/collections";
         router.push("/collections");
       }
     } catch (err) {
       console.log("[collections_POST]", err);
-      toast.error("Something went wrong! Please try again.");
+      toast.error("دوباره تلاش کنید");
     }
   };
 
@@ -80,11 +80,11 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
     <div className="p-10">
       {initialData ? (
         <div className="flex items-center justify-between">
-          <p className="text-heading2-bold">Edit Collection</p>
+          <p className="text-heading2-bold">تغییر کالکشن</p>
           <Delete id={initialData._id} item="collection" />
         </div>
       ) : (
-        <p className="text-heading2-bold">Create Collection</p>
+        <p className="text-heading2-bold">ساخت کالکشن</p>
       )}
       <Separator className="bg-grey-1 mt-4 mb-7" />
       <Form {...form}>
@@ -94,7 +94,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>عنوان</FormLabel>
                 <FormControl>
                   <Input placeholder="Title" {...field} onKeyDown={handleKeyPress} />
                 </FormControl>
@@ -107,7 +107,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>توضیحات</FormLabel>
                 <FormControl>
                   <Textarea placeholder="Description" {...field} rows={5} onKeyDown={handleKeyPress} />
                 </FormControl>
@@ -120,7 +120,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             name="image"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Image</FormLabel>
+                <FormLabel>تصویر</FormLabel>
                 <FormControl>
                   <ImageUpload
                     value={field.value ? [field.value] : []}
@@ -133,15 +133,15 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             )}
           />
           <div className="flex gap-10">
-            <Button type="submit" className="bg-blue-1 text-white">
-              Submit
+            <Button type="submit" className="bg-[#46000C] text-white">
+              تایید
             </Button>
             <Button
               type="button"
               onClick={() => router.push("/collections")}
-              className="bg-blue-1 text-white"
+              className="bg-[#46000C] text-white"
             >
-              Discard
+              انصراف
             </Button>
           </div>
         </form>

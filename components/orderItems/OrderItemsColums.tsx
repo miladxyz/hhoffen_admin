@@ -20,14 +20,14 @@ export const columns: ColumnDef<OrderItemType>[] = [
   },
   {
     accessorKey: "color",
-    header: "Color",
+    header: "رنگ",
   },
   {
     accessorKey: "size",
-    header: "Size",
+    header: "سایز",
   },
   {
     accessorKey: "quantity",
-    header: "Quantity",
+    header: "تعداد",
   },
 ];

@@ -10,26 +10,26 @@ export const navLinks = [
   {
     url: "/",
     icon: <LayoutDashboard />,
-    label: "Dashboard",
+    label: "داشبورد",
   },
   {
     url: "/collections",
     icon: <Shapes />,
-    label: "Collections",
+    label: "کالکشن ها",
   },
   {
     url: "/products",
     icon: <Tag />,
-    label: "Products",
+    label: "محصولات",
   },
   {
     url: "/orders",
     icon: <ShoppingBag />,
-    label: "Orders",
+    label: "سفارشات",
   },
   {
     url: "/customers",
     icon: <UsersRound />,
-    label: "Customers",
+    label: "کاربران",
   },
 ];

@@ -26,7 +26,7 @@ import MultiSelect from "../custom ui/MultiSelect";
 import Loader from "../custom ui/Loader";
 
 const formSchema = z.object({
-  title: z.string().min(2).max(20),
+  title: z.string().min(2).max(50),
   description: z.string().min(2).max(500).trim(),
   media: z.array(z.string()),
   category: z.string(),
@@ -34,8 +34,8 @@ const formSchema = z.object({
   tags: z.array(z.string()),
   sizes: z.array(z.string()),
   colors: z.array(z.string()),
-  price: z.coerce.number().min(0.1),
-  expense: z.coerce.number().min(0.1),
+  price: z.coerce.number().min(1),
+  expense: z.coerce.number().min(1),
 });
 
 interface ProductFormProps {
@@ -58,7 +58,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
       setLoading(false);
     } catch (err) {
       console.log("[collections_GET]", err);
-      toast.error("Something went wrong! Please try again.");
+      toast.error("دوباره تلاش کنید");
     }
   };
 
@@ -111,13 +111,13 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
       });
       if (res.ok) {
         setLoading(false);
-        toast.success(`Product ${initialData ? "updated" : "created"}`);
+        toast.success(`Product ${initialData ? "آپدیت شد" : "ساخته شد"}`);
         window.location.href = "/products";
         router.push("/products");
       }
     } catch (err) {
       console.log("[products_POST]", err);
-      toast.error("Something went wrong! Please try again.");
+      toast.error("دوباره تلاش کنید");
     }
   };
 
@@ -127,11 +127,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
     <div className="p-10">
       {initialData ? (
         <div className="flex items-center justify-between">
-          <p className="text-heading2-bold">Edit Product</p>
+          <p className="text-heading2-bold">تغییر محصول</p>
           <Delete id={initialData._id} item="product" />
         </div>
       ) : (
-        <p className="text-heading2-bold">Create Product</p>
+        <p className="text-heading2-bold">ساخت محصول</p>
       )}
       <Separator className="bg-grey-1 mt-4 mb-7" />
       <Form {...form}>
@@ -141,10 +141,10 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>عنوان</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Title"
+                    placeholder="عنوان"
                     {...field}
                     onKeyDown={handleKeyPress}
                   />
@@ -158,7 +158,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>توضیحات</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Description"
@@ -176,7 +176,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
             name="media"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Image</FormLabel>
+                <FormLabel>تصویر</FormLabel>
                 <FormControl>
                   <ImageUpload
                     value={field.value}
@@ -199,7 +199,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Price ($)</FormLabel>
+                  <FormLabel>قیمت ($)</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -217,7 +217,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
               name="expense"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Expense ($)</FormLabel>
+                  <FormLabel>هزینه ($)</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -235,7 +235,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
               name="category"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Category</FormLabel>
+                  <FormLabel>دسته بندی</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Category"
@@ -252,7 +252,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
               name="tags"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Tags</FormLabel>
+                  <FormLabel>تگ ها</FormLabel>
                   <FormControl>
                     <MultiText
                       placeholder="Tags"
@@ -275,7 +275,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 name="collections"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Collections</FormLabel>
+                    <FormLabel>کالکشن ها</FormLabel>
                     <FormControl>
                       <MultiSelect
                         placeholder="Collections"
@@ -303,7 +303,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
               name="colors"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Colors</FormLabel>
+                  <FormLabel>رنگ ها</FormLabel>
                   <FormControl>
                     <MultiText
                       placeholder="Colors"
@@ -329,7 +329,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
               name="sizes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sizes</FormLabel>
+                  <FormLabel>سایز ها</FormLabel>
                   <FormControl>
                     <MultiText
                       placeholder="Sizes"
@@ -353,15 +353,15 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
           </div>
 
           <div className="flex gap-10">
-            <Button type="submit" className="bg-blue-1 text-white">
-              Submit
+            <Button type="submit" className="bg-[#46000C] text-white">
+              تایید
             </Button>
             <Button
               type="button"
               onClick={() => router.push("/products")}
-              className="bg-blue-1 text-white"
+              className="bg-[#46000C] text-white"
             >
-              Discard
+              انصراف
             </Button>
           </div>
         </form>
